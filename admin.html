@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body class="admin-body">
+    <div class="painel-container">
+      <h2>Cadastrar Novo Produto</h2>
+      <div class="usuario-logado">
+        <p>Operador: <span id="nome-usuario">Carregando...</span></p>
+        <button onclick="sairDoSistema()" class="btn-sair">
+          Sair do Sistema
+        </button>
+      </div>
+      <div class="form-grupo">
+        <label>Nome do Produto:</label>
+        <input type="text" id="input-nome" placeholder="Ex: Tênis Nike" />
+      </div>
+
+      <div class="form-grupo">
+        <label>Preço (Apenas números e ponto):</label>
+        <input
+          type="text"
+          id="input-preco"
+          step="0.01"
+          placeholder="Ex: 199.90"
+        />
+      </div>
+
+      <div class="form-grupo">
+        <label>Caminho da Imagem:</label>
+        <input type="text" id="input-imagem" placeholder="Ex: img/tenis.png" />
+      </div>
+
+      <button onclick="cadastrarProduto()">Salvar no Banco</button>
+      <p id="mensagem-aviso"></p>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
