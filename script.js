@@ -1,3 +1,5 @@
+// Tenta carregar o carrinho salvo no navegador, ou começa um vazio []
+let carrinho = JSON.parse(localStorage.getItem('meu_carrinho')) || [];
 // 1. CONFIGURAÇÃO DO BANCO DE DADOS
 const supabaseUrl = "https://zmgjzamigwssmqriqdst.supabase.co";
 const supabaseKey =
@@ -33,6 +35,9 @@ async function carregarCatalogo() {
       <img src="${item.imagem_url}" width="150">
       <h3>${item.nome}</h3>
       <p class="preco-destaque">${precoFormatado}</p>
+      <button onclick="adicionarAoCarrinho('${item.nome}', ${item.preco})">
+      Adicionar ao Carrinho
+  </button>
     `;
     vitrine.appendChild(div);
   });
@@ -40,3 +45,38 @@ async function carregarCatalogo() {
 
 // Roda a função assim que o site abrir
 carregarCatalogo();
+// 1. ADICIONAR ITEM
+function adicionarAoCarrinho(nome, preco) {
+  const item = { nome, preco };
+  carrinho.push(item); // Adiciona na lista
+  atualizarCarrinho(); // Atualiza a tela
+}
+
+// 2. ATUALIZAR A TELA E O LOCALSTORAGE
+function atualizarCarrinho() {
+  const listaHtml = document.getElementById('lista-carrinho');
+  const totalHtml = document.getElementById('valor-total');
+  
+  listaHtml.innerHTML = ''; // Limpa a lista visual
+  let somaTotal = 0;
+
+  carrinho.forEach((item, index) => {
+      somaTotal += item.preco;
+      listaHtml.innerHTML += `<li>${item.nome} - R$ ${item.preco.toFixed(2)}</li>`;
+  });
+
+  // Atualiza o valor total na tela
+  totalHtml.innerText = somaTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+  // SALVA A LISTA NO NAVEGADOR (LocalStorage)
+  localStorage.setItem('meu_carrinho', JSON.stringify(carrinho));
+}
+
+// 3. LIMPAR TUDO
+function esvaziarCarrinho() {
+  carrinho = [];
+  atualizarCarrinho();
+}
+
+// Inicializa o carrinho ao carregar a página
+atualizarCarrinho();
