@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Catálogo</title>
+    <title>Meu Catálogo Profissional</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
@@ -12,42 +12,28 @@
       <h1>Catálogo de Produtos</h1>
     </header>
 
-    <main>
+    <main class="container-principal">
       <div id="vitrine" class="grid-produtos"></div>
 
-      <section
-        id="carrinho"
-        style="
-          margin-top: 40px;
-          padding: 20px;
-          background: #f4f4f5;
-          border-radius: 12px;
-          border: 1px solid #e4e4e7;
-        "
-      >
-        <h2 style="margin-top: 0">🛒 Seu Carrinho</h2>
-        <ul id="lista-carrinho" style="list-style: none; padding: 0"></ul>
-        <hr style="border: 0; border-top: 1px solid #d1d1d6; margin: 15px 0" />
-        <p style="font-size: 1.2rem">
-          <strong>Total: </strong><span id="total-carrinho">R$ 0,00</span>
-        </p>
-      </section>
+      <aside id="carrinho" class="carrinho-lateral">
+        <h2>🛒 Meu Carrinho</h2>
+        <ul id="lista-carrinho"></ul>
+        <div class="footer-carrinho">
+          <p>
+            <strong>Total:</strong> <span id="total-carrinho">R$ 0,00</span>
+          </p>
+          <button class="btn-finalizar">Finalizar Pedido</button>
+        </div>
+      </aside>
     </main>
 
     <footer>
-      <hr style="opacity: 0.1; margin: 50px 0 20px 0" />
-      <div style="text-align: center; padding-bottom: 30px">
+      <div style="text-align: center; padding: 20px">
         <a
           href="admin.html"
-          style="
-            text-decoration: none;
-            color: #6366f1;
-            font-size: 0.9rem;
-            font-weight: 500;
-          "
+          style="text-decoration: none; color: #6366f1; font-weight: 500"
+          >🔒 Área do Lojista</a
         >
-          🔒 Área do Lojista
-        </a>
       </div>
     </footer>
 
